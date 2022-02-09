@@ -1,4 +1,4 @@
-<template id="registerAdmin">
+<template id="register-page">
   <div>
     <body>
       <header>
@@ -127,4 +127,8 @@ export default class RegisterAdmin extends Vue {
 },
 </script>
 
-<style scoped></style>
+<style scoped id="admin">
+.register-page {
+  width: 600px;
+}
+</style>

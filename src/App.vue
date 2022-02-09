@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <div class="top-wrapper">
-      <router-view />
+      <router-link to="/RegisterAdmin">管理者ページ</router-link> |
     </div>
 
     <Footer />
