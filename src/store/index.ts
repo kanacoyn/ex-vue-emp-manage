@@ -17,9 +17,13 @@ export default new Vuex.Store({
     employees: new Array<Employee>(),
   }, // end state
   actions: {
-    //  従業員一覧情報をwebAPIか等取得してmutationを呼び出す
+    //  従業員一覧情報をwebAPIから取得してmutationを呼び出す
     async getEmployeeList(context, payload) {
-      // 外部webAPIの呼び出し
+      /**
+       * 従業員一覧情報をWebAPIから取得してmutationを呼び出す.
+       *
+       * @param context - コンテキスト
+       */
       const response = await axios.get(
         "http://153.127.48.168:8080/ex-emp-api/employee/employees"
       );
@@ -30,7 +34,12 @@ export default new Vuex.Store({
   mutations: {
     // 従業員一覧情報を作成してstateに格納する
     showEmployeeList(state, payload) {
-      // payloadないの従業員一覧をstateの従業員一覧に格納
+      /**
+       * 従業員一覧情報を作成してstateに格納する.
+       *
+       * @param context - コンテキスト
+       * @param payload - WebAPIから取得した従業員情報(JSON)
+       */
       state.employees = new Array<Employee>();
       for (const employee of payload.employees) {
         state.employees.push(
@@ -62,6 +71,12 @@ export default new Vuex.Store({
       return state.employees;
     },
     // IDから従業員を１件検索して返す
+    /**
+     * IDから従業員を検索し返す.
+     *
+     * @param state - ステート
+     * @returns 従業員情報
+     */
     getEmployeeById(state) {
       return (id: number) => {
         return state.employees.filter((employee) => employee.id == id);

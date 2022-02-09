@@ -19,7 +19,7 @@
       <div class="top-wrapper">
         <div class="container">
           <div class="row register-page">
-            <div class="error">エラーメッセージ</div>
+            <div class="error" v-if="errorMessage">{{ errorMessage }}</div>
             <form class="col s12" id="reg-form" action="#">
               <div class="row">
                 <div class="input-field col s6">
@@ -99,15 +99,32 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Axios from "axios";
+import axios from "axios";
 @Component
 export default class RegisterAdmin extends Vue {
-  private erroeMessage = "エラ〜メッセージ";
+  private erroeMessage = "エラーメッセージ";
   private lastName = "姓";
   private firstName = "名";
-  private mailAdress = "メールアドレス";
+  private mailAddress = "メールアドレス";
   private password = "パスワード";
-}
+
+  // 情報管理者を登録する
+  async registerAdmin(): Promise<void> {
+    const response = await axios.post(
+      "http://153.127.48.168:8080/ex-emp-api/employee/employees"
+    );
+    name: this.lastName + "" + this.firstName;
+    mailAddress: this.mailAddress;
+    password: this.password;
+    console.dir(JSON.stringify(response));
+
+    if (response.data.status === "success") {
+      this.$router.push("/loginAdmin");
+    } else if (response.data.status === "error") {
+      this.$router.push(response.data.message);
+    }
+  }
+},
 </script>
 
 <style scoped></style>
