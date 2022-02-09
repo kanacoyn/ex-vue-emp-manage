@@ -99,8 +99,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Axios from "axios";
 @Component
-export default class XXXComponent extends Vue {}
+export default class RegisterAdmin extends Vue {
+  private erroeMessage = "エラ〜メッセージ";
+  private lastName = "姓";
+  private firstName = "名";
+  private mailAdress = "メールアドレス";
+  private password = "パスワード";
+}
 </script>
 
 <style scoped></style>

@@ -1,7 +1,6 @@
 /**
- * Vuexストアに従業員情報を持たせる.
+ * Vuexストアに共通情報を持たせる.
  */
-
 import Vue from "vue";
 import Vuex from "vuex";
 import { Employee } from "@/types/employee";
@@ -12,7 +11,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   strict: true,
   state: {
+    // 従業員数
     totalEmployeeCount: 0,
+    // 従業員一覧
     employees: new Array<Employee>(),
   }, // end state
   actions: {
@@ -36,8 +37,15 @@ export default new Vuex.Store({
           new Employee(
             employee.id,
             employee.name,
+            employee.image,
+            employee.gender,
             employee.hireDate,
+            employee.mailAddress,
+            employee.zipCode,
+            employee.address,
+            employee.telephone,
             employee.salary,
+            employee.characteristics,
             employee.dependentsCount
           )
         );
@@ -55,7 +63,9 @@ export default new Vuex.Store({
     },
     // IDから従業員を１件検索して返す
     getEmployeeById(state) {
-      return state.employees[0];
+      return (id: number) => {
+        return state.employees.filter((employee) => employee.id == id);
+      };
     },
   }, // end getters
   modules: {}, // end modules
