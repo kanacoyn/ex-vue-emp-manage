@@ -1,4 +1,4 @@
-<template id="register-page">
+<template>
   <div>
     <body>
       <header>
@@ -9,13 +9,13 @@
                 <img class="logo" src="img/header_logo.png" />
               </a>
             </div>
-
             <div class="header-right">
               <router-link to="/registerAdmin">管理者登録</router-link> |
             </div>
           </div>
         </div>
       </header>
+
       <div class="top-wrapper">
         <div class="container">
           <div class="row register-page">
@@ -102,7 +102,7 @@ import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 @Component
 export default class RegisterAdmin extends Vue {
-  private erroeMessage = "エラーメッセージ";
+  private errorMessage = "エラーメッセージ";
   private lastName = "姓";
   private firstName = "名";
   private mailAddress = "メールアドレス";
@@ -111,11 +111,13 @@ export default class RegisterAdmin extends Vue {
   // 情報管理者を登録する
   async registerAdmin(): Promise<void> {
     const response = await axios.post(
-      "http://153.127.48.168:8080/ex-emp-api/employee/employees"
+      "http://153.127.48.168:8080/ex-emp-api/employee/employees",
+      {
+        name: this.lastName + "" + this.firstName,
+        mailAddress: this.mailAddress,
+        password: this.password,
+      }
     );
-    name: this.lastName + "" + this.firstName;
-    mailAddress: this.mailAddress;
-    password: this.password;
     console.dir(JSON.stringify(response));
 
     if (response.data.status === "success") {
@@ -124,7 +126,7 @@ export default class RegisterAdmin extends Vue {
       this.$router.push(response.data.message);
     }
   }
-},
+}
 </script>
 
 <style scoped id="admin">

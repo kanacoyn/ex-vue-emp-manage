@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <div class="top-wrapper">
-      <router-link to="/RegisterAdmin">管理者ページ</router-link> |
-    </div>
+    <div class="top-wrapper"></div>
 
     <Footer />
   </div>
