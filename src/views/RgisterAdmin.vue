@@ -1,4 +1,34 @@
 <template>
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>情報登録</title>
+    <style>
+      .register-page {
+        width: 600px;
+      }
+    </style>
+  </head>
   <div>
     <body>
       <header>
@@ -19,7 +49,7 @@
       <div class="top-wrapper">
         <div class="container">
           <div class="row register-page">
-            <div class="error" v-if="errorMessage">{{ errorMessage }}</div>
+            <div class="error" >{{ response.data.message}}</div>
             <form class="col s12" id="reg-form" action="#">
               <div class="row">
                 <div class="input-field col s6">

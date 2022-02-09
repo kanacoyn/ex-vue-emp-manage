@@ -74,8 +74,8 @@ export default new Vuex.Store({
     /**
      * IDから従業員を検索し返す.
      *
-     * @param state - ステート
-     * @returns 従業員情報
+     * @param id - 従業員ID
+     * @returns 従業員のstate
      */
     getEmployeeById(state) {
       return (id: number) => {
