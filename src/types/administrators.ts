@@ -1,8 +1,6 @@
 /**
- * administratorクラスの作成
- * 管理者情報を表す部品用のクラス
+ * 管理者情報を表す部品用のクラス.
  */
-
 export class Administrator {
   constructor(
     private _id: number,
