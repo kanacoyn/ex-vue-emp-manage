@@ -25,7 +25,7 @@ export default new Vuex.Store({
        * @param context - コンテキスト
        */
       const response = await axios.get(
-        "http://153.127.48.168:8080/ex-emp-api/employee/employees"
+        "http://153.127.48.168:8080/ex-emp-api/insert"
       );
       payload = response.data;
       context.commit("addEmployeeList", payload);
@@ -67,7 +67,7 @@ export default new Vuex.Store({
       return state.totalEmployeeCount;
     },
     // 従業員一覧を返す
-    getEmployee(state) {
+    getEmployees(state) {
       return state.employees;
     },
     // IDから従業員を１件検索して返す
@@ -79,7 +79,10 @@ export default new Vuex.Store({
      */
     getEmployeeById(state) {
       return (id: number) => {
-        return state.employees.filter((employee) => employee.id == id);
+        const newEmployees = state.employees.filter(
+          (employee) => employee.id === id
+        );
+        return newEmployees[0];
       };
     },
   }, // end getters

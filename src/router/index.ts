@@ -6,11 +6,15 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/registerAdmin",
-    component: () => import("../components/RegisterAdmin.vue"),
+    component: () => import("../views/RegisterAdmin.vue"),
   },
   {
     path: "/loginAdmin",
-    component: () => import("../components/LoginAdmin.vue"),
+    component: () => import("../views/LoginAdmin.vue"),
+  },
+  {
+    path: "/employeeList",
+    component: () => import("../views/EmployeeList.vue"),
   },
 ];
 

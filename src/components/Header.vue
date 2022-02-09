@@ -9,15 +9,9 @@
         </div>
 
         <div class="header-right">
-          <a href="../../documents/html_mock/registerAdmin.html">
-            管理者登録
-          </a>
-          <a href="../../documents/html_mock/login.html">
-            <i class="fas fa-sign-in-alt"></i>ログイン
-          </a>
-          <a href="../../documents/html_mock/login.html">
-            <i class="fas fa-sign-in-alt"></i>ログアウト
-          </a>
+          <router-link to="/registerAdmin">管理者登録</router-link>
+          <router-link to="/loginAdmin">ログイン</router-link> |
+          <i class="fas fa-sign-in-alt"></i>ログアウト
         </div>
       </div>
     </div>
