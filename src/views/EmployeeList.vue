@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div>従業員数:{{ employeeCount() }} 人</div>
+      <div>従業員数:{{ employeeCount }} 人</div>
       <div class="row">
         <table class="striped">
           <thead>
@@ -18,9 +18,7 @@
                   {{ employee.name }}
                 </router-link>
               </td>
-              <td>
-                {{ employee.hireDate }}
-              </td>
+              <td>{{ employee.hireDate }}</td>
               <td>{{ employee.dependentsCount }}人</td>
             </tr>
           </tbody>
@@ -44,12 +42,10 @@ export default class EmployeeList extends Vue {
   created(): void {
     this.$store.dispatch("getEmployeeList");
   }
-
   // 非同期で取得したvuexストア内の従業員数を取得しgetterとして返す
   get employeeCount(): number {
     return this.$store.getters.getEmployeeCount;
   }
-
   // 非同期で取得したvuexストア内の従業員一覧を取得しgetterとして返す
   get employees(): Array<Employee> {
     return this.$store.getters.getEmployees;

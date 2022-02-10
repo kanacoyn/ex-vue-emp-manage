@@ -25,10 +25,10 @@ export default new Vuex.Store({
        * @param context - コンテキスト
        */
       const response = await axios.get(
-        "http://153.127.48.168:8080/ex-emp-api/insert"
+        "http://153.127.48.168:8080/ex-emp-api/employee/employees"
       );
       payload = response.data;
-      context.commit("addEmployeeList", payload);
+      context.commit("showEmployeeList", payload);
     },
   }, // end actions
   mutations: {
@@ -40,6 +40,7 @@ export default new Vuex.Store({
        * @param context - コンテキスト
        * @param payload - WebAPIから取得した従業員情報(JSON)
        */
+      state.totalEmployeeCount = payload.totalEmployeeCount;
       state.employees = new Array<Employee>();
       for (const employee of payload.employees) {
         state.employees.push(
