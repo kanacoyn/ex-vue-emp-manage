@@ -16,7 +16,7 @@
               <tr>
                 <th nowrap>写真</th>
                 <td>
-                  <img src="{{currentEmployeeImage}}" />
+                  <img v-bind:src="currentEmployeeImage" />
                 </td>
               </tr>
               <tr>
@@ -34,7 +34,7 @@
               <tr>
                 <th nowrap>メールアドレス</th>
                 <td>
-                  <span> {{ currentEmployee.email }}</span>
+                  <span> {{ currentEmployee.mailAddress }}</span>
                 </td>
               </tr>
               <tr>

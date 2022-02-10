@@ -14,7 +14,7 @@
           <tbody>
             <tr v-for="employee of employees" v-bind:key="employee.id">
               <td>
-                <router-link to="'/employeeDetail/'+ employee.id">
+                <router-link :to="'/employeeDetail/' + employee.id">
                   {{ employee.name }}
                 </router-link>
               </td>
