@@ -11,8 +11,9 @@
         <div class="header-right">
           <router-link to="/registerAdmin">管理者登録</router-link>
           <router-link to="/loginAdmin">ログイン</router-link>
-
-          <i class="fas fa-sign-in-alt"></i>ログアウト
+          <router-link to="/logoutAdmin">
+            <i class="fas fa-sign-in-alt"></i>ログアウト
+          </router-link>
         </div>
       </div>
     </div>
