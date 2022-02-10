@@ -14,7 +14,7 @@
           <tbody>
             <tr v-for="employee of employees" v-bind:key="employee.id">
               <td>
-                <router-link to="'employeeDetail.html'+ employee.id">
+                <router-link to="'/employeeDetail/'+ employee.id">
                   {{ employee.name }}
                 </router-link>
               </td>
@@ -34,7 +34,6 @@ import { Employee } from "@/types/employee";
 /**
  * 従業員一覧を表示.
  *
- * @returns store内のgetter
  */
 @Component
 export default class EmployeeList extends Vue {
