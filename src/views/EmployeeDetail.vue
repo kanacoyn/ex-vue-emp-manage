@@ -151,6 +151,8 @@ export default class EmployeeDetail extends Vue {
   }
   /**
    * 付与人数を更新する.
+   *
+   * @returns promiseオブジェクト
    */
   async update(): Promise<void> {
     const response = await axios.post(
@@ -164,7 +166,7 @@ export default class EmployeeDetail extends Vue {
     if (response.data.status === "success") {
       this.$router.push("/employeeList");
     } else if (response.data.status === "error") {
-      this.errorMessage = "ログインに失敗" + response.data.message;
+      this.errorMessage = "更新に失敗" + response.data.message;
     }
   }
 }
