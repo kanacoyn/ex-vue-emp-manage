@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <form action="employeeList.html">
+        <form>
           <fieldset>
             <legend>従業員情報</legend>
             <table>
@@ -81,17 +81,22 @@
                     <input
                       id="dependentsCount"
                       type="text"
+                      v-model="currentDependentsCount"
                       class="validate"
                       value="3"
                       required
                     />
-                    <label for="dependentsCount2">扶養人数</label>
+                    <label for="dependentsCount2"> </label>
                   </div>
                 </td>
               </tr>
             </table>
 
-            <button class="btn btn-register waves-effect waves-light">
+            <button
+              type="button"
+              class="btn btn-register waves-effect waves-light"
+              v-on:click="update"
+            >
               更新
             </button>
           </fieldset>
@@ -130,7 +135,9 @@ export default class EmployeeDetail extends Vue {
   // 対象の従業員の扶養家族人数
   private currentDependentsCount = 0;
 
-  // vuexストアのGetters経由で取得したリクエストパラメターのIDから１件の従業員情報を取得する
+  /**
+   * vuexストアのGetters経由で取得したリクエストパラメターのIDから１件の従業員情報を取得する.
+   */
   created(): void {
     // 送られてきたIDをnumberに変換して取得する
     const employeeId = Number(this.$route.params.id);
@@ -139,9 +146,24 @@ export default class EmployeeDetail extends Vue {
     // 従業員情報から画像ファイルを取り出し、imgディレクトリからパスを取得して代入する
     this.currentEmployeeImage =
       "http://153.127.48.168:8080/ex-emp-api/img/" + this.currentEmployee.image;
-
     // 取得した従業員情報から付与人数を取り出し代入する
     this.currentDependentsCount = this.currentEmployee.dependentsCount;
+  }
+  /**
+   * 付与人数を更新する.
+   */
+  async update(): Promise<void> {
+    const response = await axios.post(
+      "http://153.127.48.168:8080/ex-emp-api/employee/employees",
+      {}
+    );
+    console.dir(JSON.stringify(response));
+
+    if (response.data.status === "success") {
+      this.$router.push("/employeeList");
+    } else if (response.data.status === "error") {
+      this.errorMessage = "ログインに失敗" + response.data.message;
+    }
   }
 }
 </script>
