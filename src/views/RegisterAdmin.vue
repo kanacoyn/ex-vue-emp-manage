@@ -78,7 +78,12 @@ export default class RegisterAdmin extends Vue {
   private mailAddress = "";
   private password = "";
 
-  // 情報管理者を登録する
+  /**
+   * 情報管理者を登録する.
+   *
+   * @returns Promiseオブジェクト
+   *
+   */
   async registerAdmin(): Promise<void> {
     const response = await axios.post(
       "http://153.127.48.168:8080/ex-emp-api/insert",
@@ -93,7 +98,7 @@ export default class RegisterAdmin extends Vue {
     if (response.data.status === "success") {
       this.$router.push("/loginAdmin");
     } else if (response.data.status === "error") {
-      this.$router.push(this.errorMessage);
+      this.errorMessage = "登録に失敗しました" + response.data.message;
     }
   }
 }

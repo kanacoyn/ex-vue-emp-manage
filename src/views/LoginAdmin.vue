@@ -12,7 +12,7 @@
                 class="validate"
                 id="mailAddress"
                 type="email"
-                v-model="mailAdress"
+                v-model="mailAddress"
               />
               <label for="mailAddress" data-error="wrong" data-success="right"
                 >メールアドレス</label
@@ -40,7 +40,9 @@
           <div class="row">
             <div class="input-field col s6 m6 l6">
               <p class="margin medium-small">
-                <a href="registerAdmin.html">管理者登録はこちら</a>
+                <router-link to="/registerAdmin"
+                  >管理者登録はこちら</router-link
+                >
               </p>
             </div>
           </div>
@@ -59,9 +61,9 @@ export default class LoginAdmin extends Vue {
   private mailAddress = "";
   private password = "";
   /**
-   * ログインを行う
-   * @param response statusを確認する
-   * @returns レスポンス情報
+   * ログインを行う.
+   *
+   * @returns promiseオブジェクト
    */
   async loginAdmin(): Promise<void> {
     const response = await axios.post(
@@ -76,7 +78,7 @@ export default class LoginAdmin extends Vue {
     if (response.data.status === "success") {
       this.$router.push("/employeeList");
     } else if (response.data.status === "error") {
-      this.$router.push(this.errorMessage);
+      this.errorMessage = "ログインに失敗" + response.data.message;
     }
   }
 }
