@@ -95,7 +95,7 @@
             <button
               type="button"
               class="btn btn-register waves-effect waves-light"
-              v-on:click="update"
+              v-on:click="update()"
             >
               更新
             </button>
@@ -141,7 +141,7 @@ export default class EmployeeDetail extends Vue {
   created(): void {
     // 送られてきたIDをnumberに変換して取得する
     const employeeId = Number(this.$route.params.id);
-    // Getterで取得したIDに１っ県の従業員情報を渡してCurrentEmployeeに代入
+    // Getterで取得したIDに１件の従業員情報を渡してCurrentEmployeeに代入
     this.currentEmployee = this.$store.getters.getEmployeeById(employeeId);
     // 従業員情報から画像ファイルを取り出し、imgディレクトリからパスを取得して代入する
     this.currentEmployeeImage =
@@ -154,14 +154,21 @@ export default class EmployeeDetail extends Vue {
    */
   async update(): Promise<void> {
     const response = await axios.post(
-      "http://153.127.48.168:8080/ex-emp-api/employee/employees",
-      {}
+      "http://153.127.48.168:8080/ex-emp-api/employee/update",
+      {
+        id: this.currentEmployee,
+        dependentsCount: this.currentDependentsCount,
+      }
     );
     console.dir(JSON.stringify(response));
 
     if (response.data.status === "success") {
+      console.log("成功");
+
       this.$router.push("/employeeList");
     } else if (response.data.status === "error") {
+      console.log("失敗");
+
       this.errorMessage = "ログインに失敗" + response.data.message;
     }
   }
