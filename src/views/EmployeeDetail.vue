@@ -117,7 +117,7 @@ export default class EmployeeDetail extends Vue {
   private currentEmployee = new Employee(
     0,
     "",
-    "",
+    "/img/noImage.png",
     "",
     new Date(),
     "",
@@ -156,19 +156,14 @@ export default class EmployeeDetail extends Vue {
     const response = await axios.post(
       "http://153.127.48.168:8080/ex-emp-api/employee/update",
       {
-        id: this.currentEmployee,
+        id: this.currentEmployee.id,
         dependentsCount: this.currentDependentsCount,
       }
     );
     console.dir(JSON.stringify(response));
-
     if (response.data.status === "success") {
-      console.log("成功");
-
       this.$router.push("/employeeList");
     } else if (response.data.status === "error") {
-      console.log("失敗");
-
       this.errorMessage = "ログインに失敗" + response.data.message;
     }
   }
